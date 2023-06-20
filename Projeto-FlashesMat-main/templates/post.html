@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+  <div class="container-fluid">
+    <article>
+
+      <header class="text-center">
+        <br></br>
+        <h1>{{ post[1] }}</h1>
+        <br></br>
+      </header>
+
+      {% if post[4] %}
+      <div class="card">
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+
+
+            {% if post[4].endswith(('jpg', 'jpeg', 'gif', 'png')) %}
+            {% set file_path = post[4].split('static', 1)[-1].lstrip('\\/') %}
+            <figure class="text-center">
+              <img width="320" height="320" src="{{ '../static/' ~ file_path }}" alt="">
+            </figure>
+            {% elif post[4].endswith('mp4') %}
+            {% set file_path = post[4].split('static', 1)[-1].lstrip('\\/') %}
+            <figure class="text-center">
+              <video width="320" height="320" controls>
+                <source src="{{ '../static/' ~ file_path }}" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+              </video>
+            </figure>
+            {% endif %}
+
+          </blockquote>
+        </div>
+      </div>
+      <br>
+      </br>
+      {% endif %}
+
+      <div class="card">
+        <div class="card-header">
+          Resumo
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            {{ post[2]|safe }}
+          </blockquote>
+        </div>
+      </div>
+
+      <br>
+      </br>
+
+      {% if post[6] or post[7] or post[8] %}
+      <div class="card">
+        <div class="card-header">
+          Snapshots
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+
+            <div class="row mt-3">
+              {%if post[6]%}
+              {% if post[6].endswith(('jpg', 'jpeg', 'gif', 'png')) %}
+              <div class="col-md-4">
+                <figure class="text-center">
+                  <img width="225" height="225" src="{{ '../static/' ~ post[6].split('static', 1)[-1].lstrip('\\/') }}"
+                    alt="">
+                </figure>
+              </div>  
+              {% endif %}
+              {% endif %}
+
+              {%if post[7]%}
+              {% if post[7].endswith(('jpg', 'jpeg', 'gif', 'png')) %}
+              <div class="col-md-4">
+                <figure class="text-center">
+                  <img width="225" height="225" src="{{ '../static/' ~ post[7].split('static', 1)[-1].lstrip('\\/') }}"
+                    alt="">
+                </figure>
+              </div>
+              {% endif %}
+              {% endif %}
+
+              {%if post[8]%}
+              {% if post[8].endswith(('jpg', 'jpeg', 'gif', 'png')) %}
+              <div class="col-md-4">
+                <figure class="text-center">
+                  <img width="225" height="225" src="{{ '../static/' ~ post[8].split('static', 1)[-1].lstrip('\\/') }}"
+                    alt="">
+                </figure>
+              </div>
+              {% endif %}
+              {% endif %}
+            </div>
+        </div>
+        </blockquote>
+      </div>
+
+      <br>
+      </br>
+
+      {% endif %}
+
+      <div class="card">
+        <div class="card-header">
+          Autor
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            {% for line in post[5].split('\n') %}
+            {{ line }}<br>
+            {% endfor %}
+          </blockquote>
+        </div>
+      </div>
+
+      <br>
+      </br>
+
+      <div class="card">
+        <div class="card-header">
+          Data
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            {{ post[11].split(' ')[0] }}
+          </blockquote>
+        </div>
+      </div>
+
+      <br>
+      </br>
+
+      {% if post[9] %}
+      <div class="card">
+        <div class="card-header">
+          Links
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            {% for word in post[9].split() %}
+            <p><a href="{{ word }}">
+
+                {% if word | length <= 40 %} {{ word }} {% else %} {{ word[:40] + '...' }} {% endif %} </a>
+            </p>
+            {% endfor %}
+          </blockquote>
+        </div>
+      </div>
+      <br>
+      {% endif %}
+
+
+      {% if post[10]%}
+      {% if post[10] != "None" %}
+      <div class="card">
+        <div class="card-header">
+          Downloads
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+
+            <form method="post" action="/download">
+              <input type="hidden" name="download" value="{{ post[10] }}">
+              <button type="submit" class="btn btn-primary">
+                Download
+              </button>
+            </form>
+          </blockquote>
+        </div>
+      </div>
+      <br>
+      </br>
+      {%endif%}
+      {%endif%}
+    </article>
+  </div>
+</main>
+{% endblock %}

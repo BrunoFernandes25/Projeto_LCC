@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <h1>Submit New Post</h1>
+  <form method="post" action="/new-form" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="discipline">Select a discipline:</label>
+      <br>
+      <label for="discipline_science">
+        <input type="radio" id="algebra" name="subject" value="algebra">
+        Álgebra
+      </label>
+      <label for="discipline_language">
+        <input type="radio" id="analise_numerica" name="subject" value="analise_numerica">
+        Análise Numérica
+      </label>
+      <label for="discipline_math">
+        <input type="radio" id="calculo_analise" name="subject" value="calculo_analise" required>
+        Cálculo e Análise
+      </label>
+      <label for="discipline_history">
+        <input type="radio" id="estatistica" name="subject" value="estatistica">
+        Estatística
+      </label>
+      <label for="discipline_history">
+        <input type="radio" id="estatistica" name="subject" value="geometria">
+        Geometria
+      </label>
+      <label for="discipline_history">
+        <input type="radio" id="estatistica" name="subject" value="matematica_discreta">
+        Matemática Discreta
+      </label>
+      <label for="discipline_history">
+        <input type="radio" id="estatistica" name="subject" value="miscelanea">
+        Miscelânea
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" placeholder="Title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="thumbnail">Thumbnail:</label>
+      <input type="file" id="thumbnail" name="thumbnail">
+    </div>
+
+    <div class="form-group">
+      <label for="file">File:</label>
+      <input type="file" id="file" name="file">
+    </div>
+
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" placeholder="Content"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author:</label>
+      <textarea type="text" id="author" name="author" placeholder="Author" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="snapshots_1">Snapshots 1</label>
+      <input type="file" id="snapshots_1" name="snapshots_1">
+      <label for="snapshots_2">Snapshot 2:</label>
+      <input type="file" id="snapshots_2" name="snapshots_2">
+      <label for="snapshots_3">Snapshot 3:</label>
+      <input type="file" id="snapshots_3" name="snapshots_3">
+    </div>
+
+    <div class="form-group">
+      <label for="links">Links:</label>
+      <textarea type="text" id="links" name="links" placeholder="Links"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="download">Download:</label>
+      <input type="file" id="download" name="download">
+    </div>
+
+    <button type="reset">Reset</button>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+{%endblock%}
